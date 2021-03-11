@@ -21,14 +21,16 @@
     <div class="starter-template">
         <h1>VAT authenticator</h1>
         <input id="userinput"><button id="btn-go">Go</button><br>
-        company_address: <span id="company_address"></span><br>
-        company_name: <span id="company_name"></span><br>
-        country_code: <span id="country_code"></span><br>
-        database: <span id="database"></span><br>
-        format_valid: <span id="format_valid"></span><br>
-        query: <span id="query"></span><br>
-        valid: <span id="valid"></span><br>
-        vat_number: <span id="vat_number"></span><br>
+        <div id="info">
+            company_address: <span id="company_address"></span><br>
+            company_name: <span id="company_name"></span><br>
+            country_code: <span id="country_code"></span><br>
+            database: <span id="database"></span><br>
+            format_valid: <span id="format_valid"></span><br>
+            query: <span id="query"></span><br>
+            valid: <span id="valid"></span><br>
+            vat_number: <span id="vat_number"></span><br>
+        </div>
     </div>
 
 </main><!-- /.container -->
@@ -40,7 +42,10 @@
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <script>
+    const div = document.getElementById("info")
+    div.style.visibility = "hidden";
     $('#btn-go').on('click', function(){
+        div.style.visibility = "visible";
         $.post('http://www.apilayer.net/api/validate?access_key=ac1ee39d6b8288c7c66623f4bc02fe13&vat_number=' + $("#userinput").val(), {}, function(res){
             $('#company_address').text(res.company_address)
             $('#company_name').text(res.company_name)
