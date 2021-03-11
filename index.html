@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>VAT authenticator</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>VAT authenticator</h1>
+        <input id="userinput"><button id="btn-go">Go</button><br>
+        company_address: <span id="company_address"></span><br>
+        company_name: <span id="company_name"></span><br>
+        country_code: <span id="country_code"></span><br>
+        database: <span id="database"></span><br>
+        format_valid: <span id="format_valid"></span><br>
+        query: <span id="query"></span><br>
+        valid: <span id="valid"></span><br>
+        vat_number: <span id="vat_number"></span><br>
+    </div>
+
+</main><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="node_modules/jquery/dist/jquery.min.js"</script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script>
+    $('#btn-go').on('click', function(){
+        $.post('http://www.apilayer.net/api/validate?access_key=ac1ee39d6b8288c7c66623f4bc02fe13&vat_number=' + $("#userinput").val(), {}, function(res){
+            $('#company_address').text(res.company_address)
+            $('#company_name').text(res.company_name)
+            $('#country_code').text(res.country_code)
+            $('#database').text(res.database)
+            $('#format_valid').text(res.format_valid)
+            $('#query').text(res.query)
+            $('#valid').text(res.valid)
+            $('#vat_number').text(res.vat_number)
+        })
+    })
+</script>
+</body>
+</html>
